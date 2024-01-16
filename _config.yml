@@ -1,12 +1,12 @@
 title: "MycoAI's website"
 author: "MycoAI's community"
-description: "Westerdijk Fungal Biodiversity Institute"
+description: "Using AI and machine learning to analyze patterns in biodiversity genomics in Fungi."
 
 # Layout
 
 show_excerpts: true        # show article excerpts on the home page
-show_frame: false           # adds a gray frame to the site
-show_sidebar: true        # show a sidebar instead of the usual header
+show_frame: true           # adds a gray frame to the site
+show_sidebar: false        # show a sidebar instead of the usual header
 minimal: false             # use a dark header
 
 # Menu
@@ -18,9 +18,7 @@ navigation:                # accepts {file, title, url, icon, sidebaricon}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:d.vu@wi.knaw.nl"}
-  - {title: Github, icon: github, url: "https://github.com/MycoAI"}
-  - {title: WI, icon: company, url: "https://wi.knaw.nl/"}
-  #- {title: Subscribe, icon: rss, url: "/feed.xml"}
+  - {title: WI, icon: rss, url: "https://wi.knaw.nl/"}
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
