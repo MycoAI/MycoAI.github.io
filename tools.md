@@ -6,7 +6,7 @@ categories: media
 
 TaxoTagger: 
 
-#MycoAI
+# MycoAI
 MycoAI is a software package, written in Python, for exploring various AI models including MycoAI-CNN and MycoAI-BERT for (fungal) eDNA identification.
 
 <b>Github:</b> [https://github.com/MycoAI/MycoAI](https://github.com/MycoAI/MycoAI)
