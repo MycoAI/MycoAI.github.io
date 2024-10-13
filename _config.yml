@@ -13,6 +13,8 @@ minimal: false             # use a dark header
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {title: "Home", file: "index.html"}
+  - {title: "Software/Tools", file: "tools.md"}
+  - {title: "Publications", file: "publications.md"}
   - {title: "Team members", file: "aboutme.md"}
   - {title: "Projects", icon: github, url: "https://github.com/MycoAI"}
   
