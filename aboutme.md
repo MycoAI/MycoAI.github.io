@@ -13,6 +13,6 @@ Current members:
 Collaborators:
 
 
-Past members:
+Former members:
 
 
