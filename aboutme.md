@@ -1,21 +1,16 @@
 ---
-title:  "Team lead"
+title:  "Team members"
 layout: post
 categories: media
 ---
-
+# Team lead
 [Duong Vu](https://github.com/vuthuyduong), researcher at [Westerdijk Fungal Biodiversity Institute](https://wi.knaw.nl/)
 
----
-title:  "Current members:"
-layout: post
-categories: media
----
+# Current members
+
+# Collaborators:
 
 
-Collaborators:
-
-
-Former members:
+# Former members:
 
 
