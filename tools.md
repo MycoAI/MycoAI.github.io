@@ -12,6 +12,8 @@ dnabarcoder'web interface:
 
 dnabarcoder:
 
+SNP variant calling
+
 FungiClassifiers:
 
 Fast Multi-Level Clustering:
