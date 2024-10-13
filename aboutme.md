@@ -1,8 +1,9 @@
 ---
-title:  "Team lead"
+title:  "Team members"
 layout: post
 categories: media
 ---
+
 
 <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg" height="100" />
 
