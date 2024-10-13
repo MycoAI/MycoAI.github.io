@@ -1,5 +1,5 @@
 ---
-title:  "About me"
+title:  "MycoAI team members"
 layout: post
 categories: media
 ---
