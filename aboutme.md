@@ -3,7 +3,7 @@ title:  "Team lead"
 layout: post
 categories: media
 ---
-<img src="[DuongVu.jpg](https://github.com/MycoAI/MycoAI.github.io/blob/master/photos/portrait_DuongVu.jpg)" width="100" alt="DuongVu"/>
+<img src="[DuongVu.jpg](https://github.com/MycoAI/MycoAI.github.io/blob/master/photos/portrait_DuongVu.jpg)" alt="" height="200" id="DuongVu"/>
 
 #DuongVu  {
 float: left;    
