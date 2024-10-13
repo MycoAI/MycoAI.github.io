@@ -7,7 +7,7 @@ categories: media
 ## TaxoTagger, 2023-present
 A Deep Learning and Semantic Search based classifier for DNA Barcode Identification
 
-<b>Project:</b> AID: Artificial Intelligence for DNA barcode identification, a Small-Scale Initiatives Machine Learning (SSI 2022c) project, awarded by the Netherlands eScience Center 
+<b>Project:</b> AID: Artificial Intelligence for DNA barcode identification, a Small-Scale Initiatives Machine Learning project, awarded by the Netherlands eScience Center 
 
 <b>Github:</b> [https://github.com/MycoAI/TaxoTagger](https://github.com/MycoAI/TaxoTagger)
 
