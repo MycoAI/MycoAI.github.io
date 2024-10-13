@@ -15,7 +15,7 @@ navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {title: "Home", file: "index.html"}
   - {title: "Software/Tools", file: "tools.md"}
   - {title: "Publications", file: "publications.md"}
-  - {title: "Team members", file: "aboutme.md"}
+  - {title: "Team members", file: "team_members.md"}
   - {title: "Projects", icon: github, url: "https://github.com/MycoAI"}
   
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
