@@ -3,6 +3,8 @@ title:  "Team members"
 layout: post
 ---
 
+|ab|cd|
+|ed|gh|
 <table>
   <tr>
     <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg"  align="left" style="height:100bp;" /> </td>
