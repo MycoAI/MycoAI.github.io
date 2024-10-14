@@ -1,6 +1,6 @@
 ---
 title:  "Welcome to MycoAI's website"
-layout: default
+layout: post
 ---
 
 Our team focusses on developing and applying computational techniques to gain insights into biological processes and patterns in fungal biodiversity.
