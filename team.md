@@ -14,10 +14,7 @@ layout: post
   </tr>
 </table>
 
-
-## Current members
-
-# Collaborators:
+## Collaborators:
 
 
-# Former members:
+## Former members:
