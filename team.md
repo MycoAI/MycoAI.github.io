@@ -5,7 +5,7 @@ layout: post
 
 <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg" alt="drawing" height="200" />
 
-Duong Vu is a bioinformatics researcher at [Westerdijk Fungal Biodiversity Institute](https://wi.knaw.nl/)
+Duong Vu is a researcher at [Westerdijk Fungal Biodiversity Institute](https://wi.knaw.nl/)
 
 
 
