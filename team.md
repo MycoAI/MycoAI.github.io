@@ -5,7 +5,7 @@ layout: post
 
 <table>
   <tr>
-    <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg"  align="left" weight="200" height="400" /> </td>
+    <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg"  align="left" style="height200px;" /> </td>
     <td>  Duong Vu 
       
          Team lead 
