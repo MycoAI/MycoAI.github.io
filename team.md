@@ -1,5 +1,5 @@
 ---
-title:  "Team members"
+title:  "Team members/collaborators"
 layout: post
 ---
 
@@ -11,9 +11,16 @@ layout: post
         Her research focuses on developing methodologies and employing AI to identify fungi and microbes quickly and accurately from environmental and clinical samples, as well as gaining insights into biological processes.<br />
       <strong>Github: </strong><a href="url">https://github.com/vuthuyduong</a><br />
       <strong>Google scholar: </strong><a href="url">https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl</a><br />
+      <strong>Twitter: </strong><a href="url">https://x.com/Duong_Thuy_Vu</a><br />
     </td>
    </tr> 
-   
+   <tr>
+    <td> <img src="https://github.com/user-attachments/assets/5624f867-e647-4c67-9b77-3dded1570959"  align="left" style="height:100bp;" /> </td>
+    <td> 
+        Cunliang Geng is a research software engineer, working at the Netherlands eScience Center. He is participating in the AID (Artificial Intelligence for DNA barcode identification) project as the main developer of TaxoTagger. <br />
+      <strong>Github: </strong><a href="url">https://github.com/cunliangGeng</a><br />
+    </td>
+   </tr> 
 </table>
 
 ## Former members:
