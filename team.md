@@ -18,3 +18,5 @@ layout: post
 
 
 ## Former members:
+- Luuk Romeijn, Leiden Institute of Advanced ComputerScience, Leiden University, Leiden,Netherlands, 2023-2024
+- Ruby van der Holst, Leiden University of Applied sciences, 2022-2023
