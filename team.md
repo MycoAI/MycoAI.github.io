@@ -6,12 +6,15 @@ layout: post
 <table>
   <tr>
     <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg" alt="drawing" align="left" style="height:200px;" /> </td>
-    <td>Duong Vu is a bioinformatics researcher at [Westerdijk Fungal Biodiversity Institute](https://wi.knaw.nl/)</td>
+    <td> ## Duong Vu 
+      
+         <b> Team lead </b>
+         
+         Duong Vu obtained a PhD in Computer Science at the University of Amsterdam in 2007. Since 2009, she has transitioned to Life Sciences, working at the Westerdijk Fungal Biodiversity Institute as a bioinformatics researcher. 
+         Her reseach focussed on developing methodologies and employing AI to identify fungi and microbes quickly and accurately from environmental and clinical samples as well as to gain insights into biological processes.  
+    </td>
    </tr> 
-   <tr>
-    <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg" alt="drawing" align="left" style="height:200px;" /> </td>
-    <td>Duong Vu is a bioinformatics researcher at [Westerdijk Fungal Biodiversity Institute](https://wi.knaw.nl/)</td>
-  </tr>
+   
 </table>
 
 ## Collaborators:
