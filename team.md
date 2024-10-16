@@ -12,6 +12,7 @@ layout: post
         Duong Vu obtained a PhD in Computer Science from the University of Amsterdam in 2007. Since 2009, she has transitioned to Life Sciences, working at the Westerdijk Fungal Biodiversity Institute as a bioinformatics researcher.
         Her research focuses on developing methodologies and employing AI to identify fungi and microbes quickly and accurately from environmental and clinical samples, as well as gaining insights into biological processes.<br />
       <strong>Github: </strong><a href="url">https://github.com/vuthuyduong</a><br />
+      <strong>Github: </strong><[https://github.com/vuthuyduong](https://github.com/vuthuyduong)<br />
       <strong>Google scholar: </strong><a href="url">https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl</a><br />
       <strong>Twitter: </strong><a href="url">https://x.com/Duong_Thuy_Vu</a><br />
     </td>
