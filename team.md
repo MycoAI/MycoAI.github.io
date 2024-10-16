@@ -3,7 +3,7 @@ title:  "Team members/collaborators"
 layout: post
 ---
 
-|:--------------------- |:-------------------:| ----------:|
+
 | X                     | Some Description    | [Y](#Y)    |
 | <span id="Y">Y</span> | Another Description | -          |
 |:--------------------- |:-------------------:| ----------:|
