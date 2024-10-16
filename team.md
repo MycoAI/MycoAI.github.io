@@ -4,11 +4,7 @@ layout: post
 ---
 
 
-
-|:--------------------- |:-------------------:| ----------:|
-| X                     | Some Description    | [Y](#Y)    |
-| <span id="Y">Y</span> | Another Description | -          |
-
+<div class="float-left">
 <table>
   <tr>
     <td> <img src="https://MycoAI.github.io/photos/portrait_DuongVu.jpg"  align="left" style="height:50bp;" /> </td>
@@ -28,7 +24,7 @@ layout: post
     </td>
    </tr> 
 </table>
-
+</div>
 ## Former members:
 - Luuk Romeijn, Leiden Institute of Advanced ComputerScience, Leiden University, Leiden,Netherlands, 2023-2024
 - Ruby van der Holst, Leiden University of Applied sciences, 2022-2023
