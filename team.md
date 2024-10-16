@@ -19,8 +19,15 @@ layout: post
    <tr>
     <td> <img src="https://github.com/user-attachments/assets/5624f867-e647-4c67-9b77-3dded1570959"  align="left" style="height:100bp;" /> </td>
     <td> 
-        Cunliang Geng is a research software engineer, working at the Netherlands eScience Center. He is participating in the AID (Artificial Intelligence for DNA barcode identification) project as the main developer of TaxoTagger. <br />
+        Cunliang Geng is a research software engineer, working at the Netherlands eScience Center. He is participating in the AID (Artificial Intelligence for DNA barcode identification) project as the main developer of <a href="https://github.com/MycoAI/TaxoTagger">TaxoTagger</a>. <br />
       <strong>Github: </strong><a href="https://github.com/cunliangGeng">https://github.com/cunliangGeng</a><br />
+    </td>
+   </tr> 
+  <tr>
+    <td> <img src="https://github.com/user-attachments/assets/32d37941-3bf2-46ef-9ef1-86cc7807542a"  align="left" style="height:100bp;" /> </td>
+    <td> 
+        Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a>. He is now a collaborator of the team as he still maintaing the MycoAI package. <br />
+      <strong>Github: </strong><a href="https://github.com/luukromeijn">https://github.com/luukromeijn</a><br />
     </td>
    </tr> 
 </table>
