@@ -26,7 +26,7 @@ layout: post
   <tr>
     <td> <img src="https://github.com/user-attachments/assets/32d37941-3bf2-46ef-9ef1-86cc7807542a"  align="left" style="height:100bp;" /> </td>
     <td> 
-        Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a>. He is now a collaborator of the team as he still maintaing the MycoAI package. <br />
+        Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a>. He is now a collaborator of the team as he still maintaining the MycoAI package. <br />
       <strong>Github: </strong><a href="https://github.com/luukromeijn">https://github.com/luukromeijn</a><br />
     </td>
    </tr> 
