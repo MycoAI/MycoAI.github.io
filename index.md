@@ -1,5 +1,5 @@
 ---
-title:  "Welcome to MycoAI's website"
+title:  "Welcome to MycoAI's webpage"
 layout: post
 ---
 
