@@ -3,8 +3,6 @@ title:  "Welcome to MycoAI's website"
 layout: post
 ---
 
-Our team focusses on developing and applying computational techniques to gain insights into biological processes and patterns in fungal biodiversity.
-These include Artificial Intelligence (AI), clustering, visualization, and analysis tools and pipelines for eDNA metabarcoding/metagenomics, genomics, and 
-transcriptomics data generated from fungal strains preserved in the [Westerdijk Institute](https://wi.knaw.nl/)'s collections as well as data available from public repositories.
+Our team focusses on developing computational techniques and employing AI to rapidly and accurately identify fungal biodiversity and functionality from environmental and clinical samples, enabling us to efficiently and scalably uncover new insights into fungal biology, ecology, and its applications in medicine, agriculture, and industry.
 
 <img src="https://MycoAI.github.io/photos/logo31_dutch_biodiversity_MycoAI.png" />
