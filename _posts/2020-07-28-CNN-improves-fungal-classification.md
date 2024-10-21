@@ -3,8 +3,7 @@ title: "Convolutional neural networks improve fungal classification"
 layout: post
 ---
 
-[Our paper](https://www.nature.com/articles/s41598-020-69245-y) titled "Convolutional neural networks improve fungal classification" on 
-applying the deep learning approach for fungal classification has been published.
+[Our paper](https://www.nature.com/articles/s41598-020-69245-y) titled "Convolutional Neural Networks Improve Fungal Classification", which applies the deep learning approach to fungal classification, has been published.
 
 <b>Abstract: </b>Sequence classification plays an important role in metagenomics studies. 
 We assess the deep neural network approach for fungal sequence classification as it has emerged as a successful paradigm for big data classification and clustering. 
