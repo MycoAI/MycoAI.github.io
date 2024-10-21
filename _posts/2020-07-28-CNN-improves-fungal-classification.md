@@ -15,3 +15,8 @@ CNN and DBN assigned less sequences than BLAST. However, they could assign much 
 In terms of efficiency, it took the machine learning classifiers up to two seconds to classify a test dataset while it was 53 s for BLAST. 
 The result of the current study will enable us to speed up the taxonomic assignments for the fungal barcode sequences generated at our institute as ~ 70% of 
 them still need to be validated for public release. In addition, it will help to quickly provide a taxonomic profile for metagenomics samples.
+
+<b>Github: </b>[https://github.com/vuthuyduong/fungiclassifiers](https://github.com/vuthuyduong/fungiclassifiers)
+
+![image](https://github.com/user-attachments/assets/01df3c97-92c0-4165-b423-00d8e9b85db5)
+
