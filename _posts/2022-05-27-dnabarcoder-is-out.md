@@ -1,5 +1,5 @@
 ---
-title: "Our paper is out "
+title: "DNABarcoder is out "
 layout: post
 ---
 
@@ -10,3 +10,5 @@ Dnabarcoder can be used to calculate similarity cutoffs for sequence identificat
 ## Citation
 
 Duong Vu, R. Henrik Nilsson, Gerard J.M. Verkley (2022). dnabarcoder: an open-source software package for analyzing and predicting DNA sequence similarity cut-offs for fungal sequence identification. Molecular Ecology Resources. https://doi.org/10.1111/1755-0998.13651
+
+![image](https://github.com/user-attachments/assets/66f1bd92-1597-4337-8d60-47f86c54c228)
