@@ -30,6 +30,13 @@ layout: post
       <strong>Github: </strong><a href="https://github.com/luukromeijn">https://github.com/luukromeijn</a><br />
     </td>
    </tr> 
+  <tr>
+    <td> <img src="https://github.com/user-attachments/assets/bfb5cc53-36a9-4d21-ad64-37225e267fff"  align="left" style="height:100bp;" /> </td>
+    <td> 
+        Huy Truong is a bachelor student at the VinUniversity in Vietnam. He's joined the MycoAI team to work on the AID project. <br />
+      <strong>Github: </strong><a href="https://github.com/huytruong2004">https://github.com/huytruong2004</a><br />
+    </td>
+   </tr> 
 </table>
 </div>
 ## Former members:
