@@ -26,7 +26,7 @@ layout: post
   <tr>
     <td> <img src="https://github.com/user-attachments/assets/32d37941-3bf2-46ef-9ef1-86cc7807542a"  align="left" style="height:100bp;" /> </td>
     <td> 
-        Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a>. He is now a collaborator of the team as he still maintaining the MycoAI package. <br />
+        Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a> from 2023-2024. He is now a collaborator of the team as he still maintaining the MycoAI package. <br />
       <strong>Github: </strong><a href="https://github.com/luukromeijn">https://github.com/luukromeijn</a><br />
     </td>
    </tr> 
@@ -37,7 +37,13 @@ layout: post
       <strong>Github: </strong><a href="https://github.com/huytruong2004">https://github.com/huytruong2004</a><br />
     </td>
    </tr> 
+  <tr>
+    <td> <img src="https://github.com/user-attachments/assets/843ad8d7-fee9-439c-a37f-df177b43b2dc"  align="left" style="height:100bp;" /> </td>
+    <td> 
+        Ruby van der Holst was a bachelor student from Leiden University of Applied sciences. She joined the MycoAI team from 2022-2023. 
+        Ruby was the main developer of dnabarcoder's web-interface. <br />
+      <strong>Github: </strong><a href="https://github.com/RubyvanderHolst">https://github.com/RubyvanderHolst</a><br />
+    </td>
+   </tr> 
 </table>
 </div>
-## Former members:
-- Ruby van der Holst, Leiden University of Applied sciences, 2022-2023. Ruby was the main developer of dnabarcoder's web-interface.
