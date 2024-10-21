@@ -14,6 +14,7 @@ layout: post
       <strong>Github: </strong><a href="https://github.com/vuthuyduong">https://github.com/vuthuyduong</a><br />
       <strong>Google scholar: </strong><a href="https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl">https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl</a><br />
       <strong>Twitter: </strong><a href="https://x.com/Duong_Thuy_Vu">https://x.com/Duong_Thuy_Vu</a><br />
+      <strong>linkedin: </strong><a href="https://www.linkedin.com/in/duong-vu-9a6b3bb7/">https://www.linkedin.com/in/duong-vu-9a6b3bb7</a><br />
     </td>
    </tr> 
    <tr>
