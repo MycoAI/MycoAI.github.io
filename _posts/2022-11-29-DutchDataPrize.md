@@ -9,6 +9,6 @@ I would like to share with you a great news: Together with Gerard Verkleij, we w
 ![image](https://github.com/user-attachments/assets/7a12d480-323d-4966-94e0-b535241bf2c5)
 
 
-<img src="https://vuthuyduong.github.io/photos/DutchDataPrize_DV.jpg" height="200" />
+<img src="https://vuthuyduong.github.io/photos/DutchDataPrize_DV.jpg" height="400" />
 
 
