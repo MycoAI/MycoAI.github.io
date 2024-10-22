@@ -3,7 +3,7 @@ title: "TaxoTagger in progress"
 layout: post
 ---
 
-Today, I had a productive working day at the Netherlands eScience Center, engaging in a fruitful discussion with 
+Today, I had a productive working day at the [Netherlands eScience Center](https://www.esciencecenter.nl/), engaging in a fruitful discussion with 
 [Cunliang Geng](https://github.com/cunliangGeng) about our new tool [TaxoTagger](https://github.com/MycoAI/TaxoTagger) 
 for efficient species identification using eDNA, coupled with AI and 
 powered by semantic searching in the AID project. 
