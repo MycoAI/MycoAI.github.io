@@ -41,7 +41,7 @@ layout: post
   <tr>
     <td> <img src="https://github.com/user-attachments/assets/843ad8d7-fee9-439c-a37f-df177b43b2dc"  align="left" style="height:100bp;" /> </td>
     <td> 
-        Ruby van der Holst was a bachelor student from Leiden University of Applied sciences. She joined the MycoAI team from 2022-2023. 
+        Ruby van der Holst, student from Leiden University of Applied sciences, joined the MycoAI team from 2022-2023 for her bachelor project.   
         Ruby was the main developer of dnabarcoder's web-interface. <br />
       <strong>Github: </strong><a href="https://github.com/RubyvanderHolst">https://github.com/RubyvanderHolst</a><br />
     </td>
