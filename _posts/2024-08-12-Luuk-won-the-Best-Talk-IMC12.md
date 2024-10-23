@@ -1,5 +1,5 @@
 ---
-title:  "Luuk won one of the three Best Talk at the Early Career Mycologists Symposium at IMC12"
+title:  "Luuk won one of the three Best Talks at the Early Career Mycologists Symposium at IMC12"
 layout: post
 categories: media
 ---
