@@ -10,6 +10,8 @@ A Deep Learning and Semantic Search based classifier for DNA Barcode Identificat
 
 <b>Github:</b> [https://github.com/MycoAI/TaxoTagger](https://github.com/MycoAI/TaxoTagger)
 
+<b>Github:</b>[https://github.com/MycoAI/taxotagger-webapp](https://github.com/MycoAI/taxotagger-webapp)
+
 <b>Developers:</b> Cunliang Geng, Sonja Georgievska, Duong Vu
 
 ## MycoAI, 2024
