@@ -7,4 +7,4 @@ Good news! [TaxoTagger](https://github.com/MycoAI/TaxoTagger) will be present at
 [Cunliang Geng](https://github.com/cunliangGeng) to learn more about our work! 
 
 
-<img src="https://github.com/MycoAI/MycoAI.github.io/photos/poster-TaxoTagger-DUCOMS.png" height="500" /> 
+<img src="https://github.com/MycoAI/MycoAI.github.io/tree/master/photos/poster-TaxoTagger-DUCOMS.png" height="500" /> 
