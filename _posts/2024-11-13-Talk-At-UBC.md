@@ -1,5 +1,5 @@
 ---
-title: "Joining the Utrecht Bioinformatics Center"
+title: "Presenting our research at the Utrecht Bioinformatics Center"
 layout: post
 ---
 
