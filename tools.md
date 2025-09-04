@@ -3,7 +3,7 @@ title:  "Software/tools"
 layout: post
 categories: media
 ---
-## TaxoTagger, 2023-present
+## TaxoTagger, 2025
 A Deep Learning and Semantic Search based classifier for DNA Barcode Identification
 
 <b>Project:</b> AID: Artificial Intelligence for DNA barcode identification, a Small-Scale Initiatives Machine Learning project, awarded by the Netherlands eScience Center 
