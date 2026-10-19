@@ -1,16 +1,33 @@
+{%- comment -%} The Blogs page: every post with its image, date, title, excerpt and link. {%- endcomment -%}
 {%- assign posts = paginator.posts | default: site.posts -%}
-{% for post in posts %}
-  <article>
-    {% include meta.html post=post preview=true %}
-    {{ post.excerpt }}
-    <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
-  </article>
-{% endfor %}
+{%- assign date_format = site.date_format | default: "%B %d, %Y" -%}
+<header class="page-header" data-added>
+  <div class="wrap"><h1>{{ page.title }}</h1></div>
+</header>
+<div class="page-body">
+  <div class="wrap">
+    <div class="post-list">
+    {%- for post in posts %}
+      <article class="post-row">
+        <a class="thumb" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true" data-added>{% include post-media.html post=post eager=forloop.first %}</a>
+        <div>
+          <header>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+          </header>
+          <div class="excerpt">{% include images.html html=post.excerpt %}</div>
+          <div class="more"><a href="{{ post.url | relative_url }}">read more</a></div>
+        </div>
+      </article>
+    {%- endfor %}
+    </div>
 
-{% if paginator.total_pages > 1 %}
-  <footer>
-    {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">« newer posts</a>{% else %}<span></span>{% endif %}
-    <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">older posts »</a>{% else %}<span></span>{% endif %}
-  </footer>
-{% endif %}
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination">
+      {% if paginator.previous_page %}<a href="{{ paginator.previous_page_path | relative_url }}">« newer posts</a>{% else %}<span></span>{% endif %}
+      <span>page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+      {% if paginator.next_page %}<a href="{{ paginator.next_page_path | relative_url }}">older posts »</a>{% else %}<span></span>{% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</div>

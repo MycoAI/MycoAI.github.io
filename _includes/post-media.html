@@ -1,0 +1,14 @@
+{%- comment -%}
+  Image for a post in a list: a small copy in assets/img/thumbs/ (named after the post's
+  address) when there is one, otherwise the post's `image`, otherwise a tinted tile with the
+  year of the post. Goes inside an element with class "thumb".
+{%- endcomment -%}
+{%- assign thumb_name = include.post.url | split: "/" | last | remove: ".html" -%}
+{%- assign thumb_path = "/assets/img/thumbs/" | append: thumb_name | append: ".webp" -%}
+{%- assign thumb = site.static_files | where: "path", thumb_path | first -%}
+{%- if thumb -%}{%- assign src = thumb_path -%}{%- else -%}{%- assign src = include.post.image -%}{%- endif -%}
+{%- if src -%}
+<img src="{{ src | relative_url }}" alt="" width="640" height="400" {% if include.eager %}fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
+{%- else -%}
+<span class="year" aria-hidden="true">{{ include.post.date | date: "%Y" }}</span>
+{%- endif -%}

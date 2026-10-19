@@ -2,6 +2,7 @@
 title:  "Happy International Women's day!"
 layout: post
 categories: media
+image: "https://github.com/user-attachments/assets/b0060710-b09b-47d6-917a-e34b08cff06b"
 ---
 
 To celebrate International Women's Day this year, I've shared my advice and experiences at our institute to help empower more women.

@@ -1,7 +1,15 @@
 ---
 layout: default
 ---
-<article>
-  <header><h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1></header>
-  {{ content }}
+<article class="page">
+  <header class="page-header">
+    <div class="wrap">
+      <h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1>
+    </div>
+  </header>
+  <div class="page-body">
+    <div class="wrap prose">
+{% include images.html html=content eager=true %}
+    </div>
+  </div>
 </article>

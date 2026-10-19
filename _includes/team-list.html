@@ -1,0 +1,42 @@
+{%- comment -%}
+  Team members page, from _data/team.yml: a card per person with round photo, name, role,
+  the original bio (shortened to a few lines with a "more" button when long) and the
+  original links as icon buttons named "<name> on <service>"; each link keeps its original
+  label and address in the page as screen-reader text.
+{%- endcomment -%}
+<ul class="plain team">
+{%- for member in site.data.team %}
+<li class="member">
+<img class="avatar" src="{{ member.photo }}" alt="" width="96" height="96" loading="lazy" decoding="async">
+<div class="text">
+<h2 data-added>{{ member.name }}</h2>
+<p class="role" data-added>{{ member.role }}</p>
+<div class="bio">{{ member.bio }}</div>
+<button class="bio-toggle" type="button" aria-expanded="false" hidden data-added>more</button>
+<ul class="plain links">
+{%- for link in member.links %}
+{%- capture service %}{% include service-name.html icon=link.icon %}{% endcapture %}
+<li><a class="icon-btn" href="{{ link.url }}" aria-label="{{ member.name }} on {{ service }}" title="{{ member.name }} on {{ service }}">{% include icon.html name=link.icon %}<span class="sr-only"><strong>{{ link.label }}: </strong>{{ link.text }}</span></a></li>
+{%- endfor %}
+</ul>
+</div>
+</li>
+{%- endfor %}
+</ul>
+<script>
+  (function () {
+    var bios = document.querySelectorAll(".member .bio");
+    for (var i = 0; i < bios.length; i++) {
+      var bio = bios[i], button = bio.nextElementSibling;
+      bio.classList.add("is-clamped");
+      if (bio.scrollHeight - bio.clientHeight < 4) { bio.classList.remove("is-clamped"); continue; }
+      button.hidden = false;
+      button.addEventListener("click", function () {
+        var b = this.previousElementSibling, open = this.getAttribute("aria-expanded") === "true";
+        b.classList.toggle("is-open", !open);
+        this.setAttribute("aria-expanded", String(!open));
+        this.textContent = open ? "more" : "less";
+      });
+    }
+  })();
+</script>

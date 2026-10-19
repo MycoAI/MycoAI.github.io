@@ -1,0 +1,81 @@
+# Team members page, in page order. `bio` and `links` are the original page text.
+# `name` and `role` are new labels (see _private/new-text.md). `author_names` are the
+# spellings of the member's name in _data/publications.yml, shown in bold there.
+# `icon` is one of: github, scholar, x, linkedin.
+- name: Duong Vu
+  role: Bioinformatics researcher, Westerdijk Fungal Biodiversity Institute
+  photo: https://MycoAI.github.io/photos/portrait_DuongVu.jpg
+  author_names:
+  - Duong Vu
+  - Vu D
+  - D Vu
+  - D. Vu
+  bio: |-
+    Duong Vu obtained a PhD in Computer Science from the University of Amsterdam in 2007. Since 2009, she has transitioned to Life Sciences, working at the Westerdijk Fungal Biodiversity Institute as a bioinformatics researcher.
+    Her research focuses on developing computational methodologies and employing AI to identify fungi and microbes quickly and accurately from environmental and clinical samples, as well as gaining insights into biological processes.
+  links:
+  - label: Github
+    icon: github
+    url: https://github.com/vuthuyduong
+    text: https://github.com/vuthuyduong
+  - label: Google scholar
+    icon: scholar
+    url: https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl
+    text: https://scholar.google.com/citations?user=ugNE8zUAAAAJ&hl=nl
+  - label: Twitter
+    icon: x
+    url: https://x.com/Duong_Thuy_Vu
+    text: https://x.com/Duong_Thuy_Vu
+  - label: linkedin
+    icon: linkedin
+    url: https://www.linkedin.com/in/duong-vu-9a6b3bb7/
+    text: https://www.linkedin.com/in/duong-vu-9a6b3bb7
+- name: Cunliang Geng
+  role: Research software engineer, Netherlands eScience Center
+  photo: https://github.com/user-attachments/assets/5624f867-e647-4c67-9b77-3dded1570959
+  author_names:
+  - Cunliang Geng
+  bio: |-
+    Cunliang Geng is a research software engineer, working at the Netherlands eScience Center. He is participating in the AID (Artificial Intelligence for DNA barcode identification) project as the main developer of <a href="https://github.com/MycoAI/TaxoTagger">TaxoTagger</a> and
+    <a href="https://github.com/MycoAI/taxotagger-webapp"> TaxoTagger-webapp </a>
+  links:
+  - label: Github
+    icon: github
+    url: https://github.com/cunliangGeng
+    text: https://github.com/cunliangGeng
+- name: Luuk Romeijn
+  role: Master's student, LIACS, Leiden University
+  photo: https://github.com/user-attachments/assets/32d37941-3bf2-46ef-9ef1-86cc7807542a
+  author_names:
+  - Luuk Romeijn
+  - Romeijn L
+  bio: Luuk Romeijn is a Master's student at Leiden Institute of Advanced Computer Science (LIACS), Leiden University. He was the main developer of <a href="https://github.com/MycoAI/MycoAI">MycoAI</a> from 2023-2024. He is now a collaborator of the team as he still maintaining the MycoAI package.
+  links:
+  - label: Github
+    icon: github
+    url: https://github.com/luukromeijn
+    text: https://github.com/luukromeijn
+- name: Huy Truong
+  role: Bachelor student, VinUniversity
+  photo: https://github.com/user-attachments/assets/bfb5cc53-36a9-4d21-ad64-37225e267fff
+  author_names:
+  - Huy Truong
+  bio: Huy Truong is a bachelor student at the VinUniversity in Vietnam. He's joined the MycoAI team to work on the AID project.
+  links:
+  - label: Github
+    icon: github
+    url: https://github.com/huytruong2004
+    text: https://github.com/huytruong2004
+- name: Ruby van der Holst
+  role: Bachelor student, Leiden University of Applied Sciences (2022-2023)
+  photo: https://github.com/user-attachments/assets/843ad8d7-fee9-439c-a37f-df177b43b2dc
+  author_names:
+  - Ruby van der Holst
+  bio: |-
+    Ruby van der Holst, a student from Leiden University of Applied Sciences, joined the MycoAI team from 2022-2023 for her bachelor project.
+    Ruby was the main developer of dnabarcoder's web-interface.
+  links:
+  - label: Github
+    icon: github
+    url: https://github.com/RubyvanderHolst
+    text: https://github.com/RubyvanderHolst

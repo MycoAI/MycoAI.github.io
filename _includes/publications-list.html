@@ -1,0 +1,34 @@
+{%- comment -%}
+  Publications page, from _data/publications.yml: grouped by year with a year jump bar.
+  Each entry shows title, authors (team members in bold) and venue with its link.
+  The parts keep their original order in the page; the title is shown first by CSS.
+{%- endcomment -%}
+{%- assign groups = site.data.publications | group_by: "year" -%}
+<nav class="year-nav" data-added>
+<ul class="plain">
+{%- for group in groups %}
+<li><a href="#year-{{ group.name }}">{{ group.name }}</a></li>
+{%- endfor %}
+</ul>
+</nav>
+{%- for group in groups %}
+<section class="pub-year" id="year-{{ group.name }}">
+<h2 data-added>{{ group.name }}</h2>
+<ol class="plain pub-list">
+{%- for pub in group.items -%}
+  {%- assign authors = pub.authors | smartify -%}
+  {%- for member in site.data.team -%}
+    {%- for spelling in member.author_names -%}
+      {%- capture bold %}<strong>{{ spelling }}</strong>{% endcapture -%}
+      {%- assign authors = authors | replace: spelling, bold -%}
+    {%- endfor -%}
+  {%- endfor %}
+<li class="pub">
+<p class="pub-authors">{{ authors }}</p>
+<p class="pub-title">{{ pub.title | smartify }}</p>
+<p class="pub-venue">{{ pub.venue | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
+</li>
+{%- endfor %}
+</ol>
+</section>
+{%- endfor %}

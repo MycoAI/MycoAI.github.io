@@ -1,0 +1,26 @@
+{%- assign f = site.data.footer -%}
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="f-about">
+      <p class="f-name" data-added>{{ f.name }}</p>
+      <p>{{ site.description | default: site.title }}</p>
+      <ul class="plain f-icons" data-added>
+        <li><a class="icon-btn" href="{{ f.github }}" aria-label="{{ f.name }} on GitHub" title="{{ f.name }} on GitHub">{% include icon.html name="github" %}</a></li>
+        <li><a class="icon-btn" href="mailto:{{ f.email }}" aria-label="E-mail {{ f.email }}" title="E-mail {{ f.email }}">{% include icon.html name="mail" %}</a></li>
+      </ul>
+    </div>
+    <ul class="plain f-links">
+    {%- for link in f.links %}
+      <li{% if link.added %} data-added{% endif %}><a href="{{ link.url }}">{{ link.label }}</a></li>
+    {%- endfor %}
+    </ul>
+    <ul class="plain f-nav" data-added>
+    {%- for item in site.navigation -%}
+      {%- if item.file -%}
+        {%- assign node = site.pages | where: "name", item.file | first %}
+      <li><a href="{{ node.url | relative_url }}">{{ item.title }}</a></li>
+      {%- endif -%}
+    {%- endfor %}
+    </ul>
+  </div>
+</footer>

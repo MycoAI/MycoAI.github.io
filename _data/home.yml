@@ -1,0 +1,73 @@
+# New text on the home page only. Every sentence and label here is taken from facts
+# already on the site; the source of each is listed in _private/new-text.md.
+# The numbers of tools, publications and news posts are counted from the site's data.
+# The highlight without a year shows the span of years in _data/publications.yml.
+# "{year}" in a label is replaced by the year of the oldest post.
+
+figures_title: Key figures
+figures:
+  - key: tools
+    label: software tools and pipelines
+    href: /tools.html
+  - key: publications
+    label: publications describing and using our tools
+    href: /publications.html
+  - key: posts
+    label: news posts since {year}
+    href: /blogs.html
+  - figure: 500+
+    label: citations of our fungal DNA barcode dataset when it won the Dutch Data Prize 2022
+    href: /media/2022/11/29/DutchDataPrize.html
+
+highlights_title: Highlights
+highlights:
+  - text: Dutch Data Prize 2022, Life Sciences category
+    year: 2022
+    href: /media/2022/11/29/DutchDataPrize.html
+    icon: award
+  - text: One of three Best Talks at the Early Career Mycologists Symposium, IMC12 (Luuk Romeijn)
+    year: 2024
+    href: /media/2024/08/12/Luuk-won-the-Best-Talk-IMC12.html
+    icon: talk
+  - text: Presented to Minister Dijkgraaf, ARISE
+    year: 2023
+    href: /media/2023/04/17/Minister-Visit.html
+    icon: visit
+  - text: Our DNA-based typification study in The Washington Post
+    year: 2023
+    href: /media/2023/04/15/DNA-based-typification.html
+    icon: press
+  - text: Papers in Molecular Ecology Resources, Scientific Reports, Bioinformatics, Studies in Mycology
+    href: /publications.html
+    icon: papers
+  - text: PI at the Utrecht Bioinformatics Center
+    year: 2024
+    href: /2024/11/22/Interview_with_UBC.html
+    icon: people
+
+# Section headings reuse the existing menu labels. "{count}" is replaced by the number of posts.
+all_posts: All {count} posts →
+news_count: 3
+
+# Caption under the 3D model of the logo in the hero.
+caption: 3D model of the MycoAI logo · drag to rotate · Ctrl + scroll or pinch to zoom
+
+# Team preview (names, roles, photos and profile links come from _data/team.yml).
+team_title: Team
+meet_team: Meet the team →
+
+# Partners.
+partners_title: We work with
+partners:
+  - name: Westerdijk Fungal Biodiversity Institute
+    url: https://wi.knaw.nl/
+    text: Host institute of the MycoAI team
+  - name: Netherlands eScience Center
+    url: https://www.esciencecenter.nl/
+    text: "AID: Artificial Intelligence for DNA barcode identification, a Small-Scale Initiatives Machine Learning project"
+  - name: ARISE
+    url: https://www.arise-biodiversity.nl/
+    text: The AID project is a joint project between the Westerdijk Institute and ARISE
+  - name: Utrecht Bioinformatics Center
+    url: https://ubc.uu.nl/
+    text: Duong Vu is one of the UBC PIs

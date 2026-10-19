@@ -2,6 +2,7 @@
 title:  "Luuk won one of the three Best Talks at the Early Career Mycologists Symposium at IMC12"
 layout: post
 categories: media
+image: "https://github.com/user-attachments/assets/fbdaf9c8-b0e1-41ce-9819-23b1e23da119"
 ---
 
 I am so proud to see my student, Luuk Romeijn from 

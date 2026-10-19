@@ -1,0 +1,46 @@
+{%- comment -%}
+  A blog post: title band with share links, the post image at the top, then the post text in
+  a readable column. When the post image is the first image of the post itself, it is moved
+  from the text to the top (shown once); otherwise it is added above the text.
+{%- endcomment -%}
+{%- assign date_format = site.date_format | default: "%B %d, %Y" -%}
+{%- assign body = content -%}
+{%- assign hero = "" -%}
+{%- if page.image -%}
+  {%- assign needle = 'src="' | append: page.image | append: '"' -%}
+  {%- if content contains needle -%}
+    {%- assign before = content | split: needle | first -%}
+    {%- assign pre_attrs = before | split: "<img" | last -%}
+    {%- assign cut = before.size | minus: pre_attrs.size | minus: 4 -%}
+    {%- assign head = before | slice: 0, cut -%}
+    {%- assign after = content | remove_first: before | remove_first: needle -%}
+    {%- assign post_attrs = after | split: ">" | first -%}
+    {%- assign tail = after | remove_first: post_attrs | remove_first: ">" -%}
+    {%- capture hero %}<img{{ pre_attrs }}{{ needle }}{{ post_attrs }}>{% endcapture -%}
+    {%- capture body %}{{ head }}{{ tail }}{% endcapture -%}
+  {%- endif -%}
+{%- endif -%}
+<article class="post-page">
+  <header class="page-header">
+    <div class="wrap">
+      <h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: date_format }}</time>
+      <div class="share-top" data-added>{% include share.html %}</div>
+    </div>
+  </header>
+  <div class="page-body">
+    <div class="wrap">
+      {%- if hero != "" %}
+      <div class="thumb post-hero">{% include images.html html=hero eager=true %}</div>
+      {%- elsif page.image %}
+      <div class="thumb post-hero" data-added><img src="{{ page.image | relative_url }}" alt="" fetchpriority="high" decoding="async"></div>
+      {%- else %}
+      <div class="thumb post-hero is-placeholder" data-added><span class="year" aria-hidden="true">{{ page.date | date: "%Y" }}</span></div>
+      {%- endif %}
+      <div class="prose">
+{% include images.html html=body %}
+      </div>
+      <div class="share-bottom" data-added>{% include share.html %}</div>
+    </div>
+  </div>
+</article>

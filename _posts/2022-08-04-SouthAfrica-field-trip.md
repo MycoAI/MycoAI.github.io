@@ -2,6 +2,7 @@
 title:  "The field trip in South Africa"
 layout: post
 categories: media
+image: "https://vuthuyduong.github.io/photos/SouthAfrica_DV.jpg"
 ---
 
 Up and down the mountains in South Africa looking for fungi, feeling like I am an ecologist in making :). 

@@ -1,6 +1,7 @@
 ---
 title: "DNABarcoder is out "
 layout: post
+image: "https://github.com/user-attachments/assets/66f1bd92-1597-4337-8d60-47f86c54c228"
 ---
 
 Our paper [Dnabarcoder: An open-source software package for analysing and predicting DNA sequence similarity cutoffs for fungal sequence identification](https://doi.org/10.1111/1755-0998.13651) is out! 

@@ -1,0 +1,16 @@
+# Footer, shown on every page. The site name, the icon buttons, the "UBC interview" link and
+# the site navigation are new (listed in _private/new-text.md); the other links are the
+# original footer links (Mail, WI, Github) with the labels approved in round 3.
+name: MycoAI
+email: d.vu@wi.knaw.nl
+github: https://github.com/MycoAI
+links:
+  - label: Westerdijk Institute
+    url: https://wi.knaw.nl/
+  - label: MycoAI on GitHub
+    url: https://github.com/MycoAI
+  - label: UBC interview
+    url: https://ubc.uu.nl/meet-ubc-principal-investigator-duong-vu/
+    added: true
+  - label: d.vu@wi.knaw.nl
+    url: mailto:d.vu@wi.knaw.nl

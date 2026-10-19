@@ -1,6 +1,7 @@
 ---
 title: "Convolutional neural networks improve fungal classification"
 layout: post
+image: "https://github.com/user-attachments/assets/01df3c97-92c0-4165-b423-00d8e9b85db5"
 ---
 
 [Our paper](https://www.nature.com/articles/s41598-020-69245-y) titled "Convolutional Neural Networks Improve Fungal Classification", which applies the deep learning approach to fungal classification, has been published.

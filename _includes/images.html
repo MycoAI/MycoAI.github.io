@@ -1,0 +1,19 @@
+{%- comment -%}
+  Outputs include.html with presentation attributes on every <img>:
+  lazy loading (the first image loads early when include.eager is set), async
+  decoding, and an empty alt where none exists so the image is treated as
+  decorative. Attributes the image already has, including alt text, are left as they are.
+{%- endcomment -%}
+{%- assign chunks = include.html | split: "<img " -%}
+{%- for chunk in chunks -%}
+  {%- if forloop.first -%}
+    {{- chunk -}}
+  {%- else -%}
+    {%- assign tag = chunk | split: ">" | first -%}
+    <img {% unless tag contains "alt=" %}alt="" {% endunless %}
+    {%- unless tag contains "loading=" or tag contains "fetchpriority=" -%}
+      {%- if forloop.index == 2 and include.eager %}fetchpriority="high" {% else %}loading="lazy" {% endif -%}
+    {%- endunless -%}
+    {%- unless tag contains "decoding=" %}decoding="async" {% endunless %}{{ chunk -}}
+  {%- endif -%}
+{%- endfor -%}

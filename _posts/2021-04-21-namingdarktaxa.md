@@ -2,6 +2,7 @@
 title:  "Naming the fungal universe"
 layout: post
 categories: media
+image: "https://github.com/vuthuyduong/vuthuyduong.github.io/assets/24915122/d8643f41-ed08-4f7e-a716-27fc634976b2"
 ---
 Currently, only approximately 150,000 of the estimated 6 million fungal species have been described. Describing all fungal species through culturing alone is estimated to take us 2,000 years. In a recent study
 [Fungal taxonomy and sequence-based nomenclature](https://www.nature.com/articles/s41564-021-00888-x?utm_campaign=related_content&utm_source=MICROBIO&utm_medium=communities)

@@ -1,14 +1,22 @@
 ---
 layout: default
 ---
-
-<article>
-  {% include meta.html post=page %}
-  {{ content }}
-  {% if page.comments != false and site.comments.isso or site.comments.disqus %}
-    <hr>
-    {% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}
-    {% if site.comments.disqus_shortname %}<div id="disqus_thread"></div>{% endif %}
-    <noscript>Please enable JavaScript to view comments.</noscript>
-  {% endif %}
+{%- assign name = page.path | split: "/" | last | split: "." | first -%}
+{%- if page.collection == "posts" -%}
+  {%- include post-page.html -%}
+{%- elsif name == "index" -%}
+  {%- include home-page.html -%}
+{%- else -%}
+<article class="page-{{ name }}">
+  <header class="page-header">
+    <div class="wrap">
+      <h1><a href="{{ page.url | relative_url }}">{{ page.title | replace: "/", "/<wbr>" }}</a></h1>
+    </div>
+  </header>
+  <div class="page-body">
+    <div class="wrap{% if name == "aboutme" %} prose{% endif %}">
+{% include images.html html=content eager=true %}
+    </div>
+  </div>
 </article>
+{%- endif -%}

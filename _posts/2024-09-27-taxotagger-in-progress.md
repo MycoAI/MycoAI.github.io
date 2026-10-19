@@ -1,6 +1,7 @@
 ---
 title: "TaxoTagger in progress"
 layout: post
+image: "https://github.com/user-attachments/assets/279d3ed8-0b0a-419e-a2e0-75471ce6dd04"
 ---
 
 Today, I had a productive working day at the [Netherlands eScience Center](https://www.esciencecenter.nl/), engaging in a fruitful discussion with 

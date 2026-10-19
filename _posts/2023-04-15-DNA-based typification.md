@@ -2,6 +2,7 @@
 title:  "DNA-based typification"
 layout: post
 categories: media
+image: "https://github.com/vuthuyduong/vuthuyduong.github.io/assets/24915122/9ab0e564-96fe-4780-9f8a-d04b6919c6bc"
 ---
 
 Wow Today's issue of [The Washington Post](https://www.washingtonpost.com/science/2023/04/15/dark-fungi-naming-controversy/) features a press release of our recent study 

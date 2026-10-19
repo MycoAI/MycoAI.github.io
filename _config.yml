@@ -1,13 +1,13 @@
 title: "MycoAI's website"
 author: "MycoAI's team"
 description: "Using AI to uncover patterns in fungal biodiversity."
+url: "https://mycoai.github.io"
+lang: "en"
+logo: "/photos/logo31_dutch_biodiversity_MycoAI.png"
 
 # Layout
 
-show_excerpts: true        # show article excerpts on the home page
-show_frame: true           # adds a gray frame to the site
-show_sidebar: false        # show a sidebar instead of the usual header
-minimal: false             # use a dark header
+show_excerpts: true        # show article excerpts on the Blogs page
 
 # Menu
 
@@ -30,3 +30,19 @@ comments:
 
 plugins:
  - jekyll-feed
+ - jekyll-seo-tag
+ - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: "assets"
+    values:
+      sitemap: false
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - scripts
+  - docs

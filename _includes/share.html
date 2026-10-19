@@ -1,0 +1,14 @@
+{%- comment -%}
+  Plain share links: no scripts, iframes or tracking from the networks.
+{%- endcomment -%}
+{%- assign share_url = page.url | absolute_url | url_encode -%}
+{%- assign share_title = page.title | url_encode -%}
+<div class="share">
+  <p class="share__label">Share</p>
+  <ul class="plain">
+    <li><a class="round-btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ share_url }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn (opens in a new tab)" title="Share on LinkedIn">{% include icon.html name="linkedin" %}</a></li>
+    <li><a class="round-btn" href="https://x.com/intent/post?url={{ share_url }}&amp;text={{ share_title }}" target="_blank" rel="noopener noreferrer" aria-label="Share on X (opens in a new tab)" title="Share on X">{% include icon.html name="x" %}</a></li>
+    <li><a class="round-btn" href="https://www.facebook.com/sharer/sharer.php?u={{ share_url }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook (opens in a new tab)" title="Share on Facebook">{% include icon.html name="facebook" %}</a></li>
+    <li><a class="round-btn" href="mailto:?subject={{ share_title }}&amp;body={{ share_url }}" aria-label="Share by e-mail" title="Share by e-mail">{% include icon.html name="mail" %}</a></li>
+  </ul>
+</div>

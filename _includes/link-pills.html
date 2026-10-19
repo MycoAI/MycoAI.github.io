@@ -1,0 +1,28 @@
+{%- comment -%}
+  Turns links whose text is their own address into small buttons with an icon and a short
+  label: GitHub repositories show the repository name, doi.org links "DOI", other links the
+  site name. The full address stays in the page as screen-reader text and as the tooltip.
+  Usage: {% include link-pills.html html=... %}
+{%- endcomment -%}
+{%- assign parts = include.html | split: '<a href="' -%}
+{{- parts.first -}}
+{%- for part in parts offset: 1 -%}
+  {%- assign url = part | split: '"' | first -%}
+  {%- assign after_open = part | remove_first: url | remove_first: '">' -%}
+  {%- assign text = after_open | split: "</a>" | first -%}
+  {%- assign tail = after_open | remove_first: text | remove_first: "</a>" -%}
+  {%- if text == url -%}
+    {%- assign host = url | split: "//" | last | split: "/" | first | remove_first: "www." -%}
+    {%- assign path_bits = url | split: "//" | last | split: "/" -%}
+    {%- if host == "github.com" -%}
+      {%- assign icon = "github" -%}{%- assign short = path_bits | last -%}
+    {%- elsif host == "doi.org" -%}
+      {%- assign icon = "paper" -%}{%- assign short = "DOI" -%}
+    {%- else -%}
+      {%- assign icon = "globe" -%}{%- assign short = host -%}
+    {%- endif -%}
+    <a class="pill" href="{{ url }}" title="{{ url }}">{% include icon.html name=icon %}<span data-added>{{ short }}</span><span class="sr-only">{{ text }}</span></a>{{ tail }}
+  {%- else -%}
+    <a href="{{ part }}
+  {%- endif -%}
+{%- endfor -%}

@@ -1,0 +1,31 @@
+{%- comment -%}
+  Software/Tools page, from _data/tools.yml: one block per tool with name and year on the
+  left and its paragraphs on the right. "<b>Github:</b>" and "<b>Webpage:</b>" rows become
+  icon buttons (GitHub icon + repository name, globe + site); the other labelled rows
+  (project, developers, paper) are muted text, with DOI links as a paper icon + "DOI".
+{%- endcomment -%}
+<div class="tool-list">
+{%- for tool in site.data.tools %}
+<section class="tool">
+<h2 id="{{ tool.id }}">{{ tool.name | smartify }}, <span class="year">{{ tool.year }}</span></h2>
+<div class="tool-body">
+{%- for paragraph in tool.paragraphs -%}
+  {%- assign html = paragraph | markdownify | strip -%}
+  {%- assign opening = paragraph | slice: 0, 3 -%}
+  {%- if opening == "<b>" -%}
+    {%- assign label = paragraph | split: "</b>" | first | remove_first: "<b>" -%}
+    {%- if label == "Github:" or label == "Webpage:" -%}
+      {%- assign html = html | replace_first: "<p><b>", '<p class="field-link"><b class="sr-only">' -%}
+    {%- else -%}
+      {%- assign html = html | replace_first: "<p>", '<p class="field-meta">' -%}
+    {%- endif -%}
+    {%- capture html %}{% include link-pills.html html=html %}{% endcapture -%}
+  {%- else -%}
+    {%- assign html = html | replace_first: "<p>", '<p class="lead-text">' -%}
+  {%- endif %}
+{{ html }}
+{%- endfor %}
+</div>
+</section>
+{%- endfor %}
+</div>

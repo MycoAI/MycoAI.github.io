@@ -1,0 +1,151 @@
+{%- comment -%}
+  Home page. The existing home page content (index.md: title, mission, interview link and
+  logo) is kept: the title is the eyebrow, the mission and interview are the hero text, and
+  the logo is the fallback for the 3D model. Everything new is marked data-added; its wording
+  is in _data/home.yml and listed in _private/new-text.md.
+{%- endcomment -%}
+{%- assign home = site.data.home -%}
+{%- assign date_format = site.date_format | default: "%B %d, %Y" -%}
+{%- assign first_year = site.posts.last.date | date: "%Y" -%}
+{%- capture year_token -%}{year}{%- endcapture -%}
+{%- capture count_token -%}{count}{%- endcapture -%}
+{%- assign pub_years = site.data.publications | map: "year" | sort -%}
+{%- capture pub_span %}{{ pub_years.first }}–{{ pub_years.last }}{% endcapture -%}
+{%- assign nav_tools = site.navigation | where: "file", "tools.md" | first -%}
+{%- assign nav_pubs = site.navigation | where: "file", "publications.md" | first -%}
+{%- assign nav_blogs = site.navigation | where: "file", "blogs.html" | first -%}
+
+{%- comment -%} The logo paragraph of index.md becomes the 3D fallback. {%- endcomment -%}
+{%- assign intro = content -%}
+{%- assign logo = "" -%}
+{%- if content contains "<p><img" -%}
+  {%- assign intro = content | split: "<p><img" | first -%}
+  {%- assign logo_rest = content | split: "<p><img" | last | split: "</p>" | first -%}
+  {%- capture logo %}<img{{ logo_rest }}{% endcapture -%}
+{%- endif -%}
+
+<section class="hero">
+  <div class="stage" id="stage">
+    <p class="fallback">{% include images.html html=logo %}</p>
+  </div>
+  <p class="caption" id="hero-caption" hidden data-added>{{ home.caption }}</p>
+  <div class="hero-tools" id="hero-tools" hidden data-added>
+    <button class="round-btn" type="button" id="zin" aria-label="Zoom in">+</button>
+    <button class="round-btn" type="button" id="zout" aria-label="Zoom out">−</button>
+    <button class="round-btn" type="button" id="reset" aria-label="Reset view"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/></svg></button>
+    <button class="round-btn" type="button" id="spin" aria-label="Pause rotation"><svg viewBox="0 0 24 24" fill="currentColor" id="spinIco" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+  </div>
+  <div class="wrap">
+    <div class="copy">
+      <p class="eyebrow"><a href="{{ page.url | relative_url }}">{{ page.title }}</a></p>
+      <h1 data-added>{{ site.description }}</h1>
+      <div class="intro">
+{{ intro }}
+      </div>
+      <div class="actions" data-added>
+        <a class="btn primary" href="{{ "/tools.html" | relative_url }}">{{ nav_tools.title }}</a>
+        <a class="btn" href="{{ "/publications.html" | relative_url }}">{{ nav_pubs.title }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="figures-title" data-added>
+  <div class="wrap">
+    <h2 id="figures-title" class="sr-only">{{ home.figures_title }}</h2>
+    <dl class="figures">
+    {%- for item in home.figures -%}
+      {%- case item.key -%}
+        {%- when "tools" -%}{%- assign figure = site.data.tools.size -%}
+        {%- when "publications" -%}{%- assign figure = site.data.publications.size -%}
+        {%- when "posts" -%}{%- assign figure = site.posts.size -%}
+        {%- else -%}{%- assign figure = item.figure -%}
+      {%- endcase %}
+      <div>
+        <dt><a href="{{ item.href | relative_url }}">{{ item.label | replace: year_token, first_year }}</a></dt>
+        <dd>{{ figure }}</dd>
+      </div>
+    {%- endfor %}
+    </dl>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="highlights-title" data-added>
+  <div class="wrap">
+    <div class="head"><h2 id="highlights-title">{{ home.highlights_title }}</h2></div>
+    <div class="hl">
+    {%- for item in home.highlights %}
+      <a href="{{ item.href | relative_url }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          {%- case item.icon -%}
+            {%- when "award" -%}<circle cx="12" cy="9" r="6"/><path d="M8.5 14l-1.5 7 5-3 5 3-1.5-7"/>
+            {%- when "talk" -%}<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>
+            {%- when "visit" -%}<path d="M3 21h18M4 10h16M12 3l8 5H4z"/><path d="M6 10v8M10 10v8M14 10v8M18 10v8"/>
+            {%- when "press" -%}<rect x="3" y="4" width="15" height="16" rx="1.5"/><path d="M18 8h3v10a2 2 0 0 1-2 2M7 8h7M7 12h7M7 16h4"/>
+            {%- when "papers" -%}<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>
+            {%- when "people" -%}<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.5a5 5 0 0 1 5.5 5"/>
+          {%- endcase -%}
+        </svg>
+        <span class="y">{% if item.year %}{{ item.year }}{% else %}{{ pub_span }}{% endif %}</span>
+        <span class="t">{{ item.text }}</span>
+      </a>
+    {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="news-title" data-added>
+  <div class="wrap">
+    <div class="head">
+      <h2 id="news-title">{{ nav_blogs.title }}</h2>
+      <a class="more" href="{{ "/blogs.html" | relative_url }}">{{ home.all_posts | replace: count_token, site.posts.size }}</a>
+    </div>
+    <div class="news">
+    {%- for post in site.posts limit: home.news_count %}
+      <article class="post-card">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+        <div class="thumb">{% include post-media.html post=post %}</div>
+      </article>
+    {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="team-title" data-added>
+  <div class="wrap">
+    <div class="head">
+      <h2 id="team-title">{{ home.team_title }}</h2>
+      <a class="more" href="{{ "/team.html" | relative_url }}">{{ home.meet_team }}</a>
+    </div>
+    <ul class="plain team-row">
+    {%- for member in site.data.team %}
+      <li>
+        <img src="{{ member.photo }}" alt="" width="88" height="88" loading="lazy" decoding="async">
+        <p class="name">{{ member.name }}</p>
+        <p class="role">{{ member.role }}</p>
+        <ul class="plain links">
+        {%- for link in member.links -%}
+          {%- capture service %}{% include service-name.html icon=link.icon %}{% endcapture %}
+          <li><a class="icon-btn" href="{{ link.url }}" aria-label="{{ member.name }} on {{ service }}" title="{{ member.name }} on {{ service }}">{% include icon.html name=link.icon %}</a></li>
+        {%- endfor %}
+        </ul>
+      </li>
+    {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="block" aria-labelledby="partners-title" data-added>
+  <div class="wrap">
+    <div class="head"><h2 id="partners-title">{{ home.partners_title }}</h2></div>
+    <ul class="plain partners">
+    {%- for partner in home.partners %}
+      <li>
+        <h3><a href="{{ partner.url }}">{{ partner.name }}</a></h3>
+        <p>{{ partner.text }}</p>
+      </li>
+    {%- endfor %}
+    </ul>
+  </div>
+</section>

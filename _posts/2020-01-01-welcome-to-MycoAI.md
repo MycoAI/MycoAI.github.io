@@ -1,6 +1,7 @@
 ---
 title: "Welcome to MycoAI"
 layout: post
+image: "https://github.com/user-attachments/assets/2515b095-521d-4ad1-9b64-b2f936cf601b"
 ---
 
 Welcome to MycoAI's website. 
