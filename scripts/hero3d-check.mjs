@@ -42,9 +42,13 @@ function launch(extraFlags) {
   return {
     port,
     async stop() {
+      // wait for Chrome to exit and release its files, then remove the temporary profile
+      const exited = proc.exitCode !== null ? Promise.resolve() : new Promise((r) => proc.once("exit", r));
       proc.kill();
-      await sleep(300);
-      try { rmSync(profile, { recursive: true, force: true }); } catch {}
+      await Promise.race([exited, sleep(5000)]);
+      for (let i = 0; i < 20; i++) {
+        try { rmSync(profile, { recursive: true, force: true }); return; } catch { await sleep(250); }
+      }
     },
   };
 }

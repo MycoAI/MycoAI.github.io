@@ -348,6 +348,18 @@ end
 File.write(ADDED_FILE, added_report.join("\n\n") + "\n")
 puts "\nAdded text per page: #{ADDED_FILE}"
 
+puts "\n== Cache busting (local CSS and JS carry ?v=)"
+unversioned = current_files.grep(/\.html\z/).reject { |f| f.start_with?("assets/") }.flat_map do |f|
+  doc = Nokogiri::HTML5(File.read(File.join(CURRENT_DIR, f), encoding: "UTF-8"))
+  refs = doc.css("script[src]").map { |e| e["src"] } + doc.css('link[rel="stylesheet"][href]').map { |e| e["href"] }
+  refs.reject { |r| r =~ %r{\A(https?:)?//} || r.include?("?v=") }.map { |r| "#{f}: #{r}" }
+end
+if unversioned.empty?
+  puts "  ok    all local CSS and JS references have ?v="
+else
+  unversioned.uniq.first(10).each { |u| fail!("no ?v= on #{u}") }
+end
+
 puts "\n== 3D hero (home page)"
 # hero3d.js is the only 3D script tag (home page only, defer); it loads the vendored three.js
 # and OrbitControls itself once the stage is near the viewport.
@@ -355,7 +367,7 @@ HERO_JS = "assets/js/hero3d.js"
 HERO_VENDOR = %w[assets/js/vendor/three.min.js assets/js/vendor/OrbitControls.js].freeze
 ([HERO_JS] + HERO_VENDOR).each { |f| fail!("missing in the build: /#{f}") unless current_files.include?(f) }
 home = Nokogiri::HTML5(File.read(File.join(CURRENT_DIR, "index.html"), encoding: "UTF-8"))
-srcs = home.css("script[src]").map { |s| [s["src"].sub(%r{\A/}, ""), s.key?("defer")] }
+srcs = home.css("script[src]").map { |s| [s["src"].sub(%r{\A/}, "").sub(/\?.*\z/, ""), s.key?("defer")] }
 hero_tag = srcs.find { |src, _| src == HERO_JS }
 if hero_tag.nil?
   fail!("home page does not load /#{HERO_JS}")
@@ -374,6 +386,9 @@ fail!("home page has no #stage") unless home.at_css("#stage")
 other = current_files.grep(/\.html\z/).reject { |f| f == "index.html" || f.start_with?("assets/") }
   .select { |f| File.read(File.join(CURRENT_DIR, f), encoding: "UTF-8").include?("hero3d.js") }
 fail!("3D scripts loaded outside the home page: #{other.first(5).join(', ')}") unless other.empty?
+if current_files.include?(HERO_JS) && !hero_src.include?("vendor/three.min.js'+version")
+  fail!("/#{HERO_JS} does not pass its ?v= on to the vendored scripts")
+end
 
 node_ok = system("node", "--version", out: File::NULL, err: File::NULL)
 if !node_ok

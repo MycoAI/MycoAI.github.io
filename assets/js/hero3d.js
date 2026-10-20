@@ -6,28 +6,50 @@
   Loading: this file is the only 3D script on the page (home page only, defer). three.js r128
   and OrbitControls (assets/js/vendor/) are loaded only when #stage comes near the viewport and
   the browser is idle. The logo image stays visible in the stage until the scene is running, so
-  without WebGL or when anything here fails, visitors see the logo instead of an empty box.
+  without WebGL or when anything here fails, visitors see the logo instead of an empty box, and
+  the reason is logged with console.warn.
+
+  The vendored files get the same ?v=<build time> as this file (_layouts/default.html), so
+  returning visitors do not get stale copies from the browser cache.
 */
 (function(){
   const stage=document.getElementById('stage'), script=document.currentScript;
-  if(!stage||!script||!window.IntersectionObserver)return;
-  const base=script.src.replace(/hero3d\.js(\?.*)?$/,'');
+  if(!stage||!script)return;
+  /* the logo stays (it is shown until the scene runs); say why */
+  const warn=reason=>console.warn('MycoAI 3D model not shown, showing the logo instead: '+reason);
+  function fallBack(reason){
+    stage.classList.remove('is-3d');
+    const canvas=stage.querySelector('canvas'); if(canvas)canvas.remove();
+    warn(reason);
+  }
+  if(!window.IntersectionObserver){warn('this browser has no IntersectionObserver'); return;}
+  const base=script.src.replace(/hero3d\.js(\?.*)?$/,''), version=(script.src.match(/\?v=[^&#]*/)||[''])[0];
   const root=document.documentElement, system=matchMedia('(prefers-color-scheme: dark)');
   /* same rule as the theme toggle in _includes/header.html, including the system setting */
   const isDark=()=>root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&system.matches);
 
-  function fallBack(){
-    stage.classList.remove('is-3d');
-    const canvas=stage.querySelector('canvas'); if(canvas)canvas.remove();
+  /* checked before three.js is downloaded; the test context is released right away */
+  function hasWebGL(){
+    try{
+      const c=document.createElement('canvas'), gl=c.getContext('webgl2')||c.getContext('webgl');
+      if(!gl)return false;
+      const lose=gl.getExtension('WEBGL_lose_context'); if(lose)lose.loseContext();
+      return true;
+    }catch(e){return false;}
   }
 
   /* page text renders first; three.js is fetched only when the hero is near the viewport and the browser is idle */
-  const load=src=>new Promise((ok,no)=>{const el=document.createElement('script'); el.src=src; el.onload=ok; el.onerror=no; document.head.appendChild(el);});
+  const load=src=>new Promise((ok,no)=>{const el=document.createElement('script'); el.src=src; el.onload=ok;
+    el.onerror=()=>no(new Error('could not load script '+src)); document.head.appendChild(el);});
   const idle=window.requestIdleCallback||(f=>setTimeout(f,200));
   new IntersectionObserver((es,ob)=>{ if(!es[es.length-1].isIntersecting)return; ob.disconnect();
-    idle(()=>load(base+'vendor/three.min.js')
-      .then(()=>load(base+'vendor/OrbitControls.js'))
-      .then(start3D).catch(fallBack));
+    idle(()=>{
+      if(!hasWebGL()){fallBack('WebGL is not available in this browser'); return;}
+      load(base+'vendor/three.min.js'+version)
+        .then(()=>load(base+'vendor/OrbitControls.js'+version))
+        .then(start3D)
+        .catch(e=>fallBack(e&&e.message&&/^could not load script /.test(e.message)?e.message:'error while starting the 3D scene: '+(e&&e.message||e)));
+    });
   },{rootMargin:'200px'}).observe(stage);
 
   function start3D(){

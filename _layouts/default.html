@@ -19,18 +19,19 @@
   })();
 </script>
 {% seo title=false %}
+{%- comment -%} Local CSS and JS carry ?v=<build time> so returning visitors get the new files after each build. {%- endcomment %}
 <link rel="preload" href="{{ "/assets/fonts/manrope-latin-wght-normal.woff2" | relative_url }}" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}?v={{ site.time | date: '%s' }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ "/assets/img/favicon-32.png" | relative_url }}">
 <link rel="apple-touch-icon" href="{{ "/assets/img/apple-touch-icon.png" | relative_url }}">
 {% feed_meta %}
 {% if page.mathjax or site.mathjax %}
-<link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | relative_url }}">
-<script defer src="{{ "/assets/katex/katex.min.js" | relative_url }}"></script>
-<script defer src="{{ "/assets/katex/contrib/auto-render.min.js" | relative_url }}" onload="renderMathInElement(document.body)"></script>
+<link rel="stylesheet" href="{{ "/assets/katex/katex.min.css" | relative_url }}?v={{ site.time | date: '%s' }}">
+<script defer src="{{ "/assets/katex/katex.min.js" | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+<script defer src="{{ "/assets/katex/contrib/auto-render.min.js" | relative_url }}?v={{ site.time | date: '%s' }}" onload="renderMathInElement(document.body)"></script>
 {% endif %}
 {%- if page.url == "/" %}
-<script defer src="{{ "/assets/js/hero3d.js" | relative_url }}"></script>
+<script defer src="{{ "/assets/js/hero3d.js" | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 {%- endif %}
 </head>
 <body>
