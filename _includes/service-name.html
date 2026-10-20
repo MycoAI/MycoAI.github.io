@@ -1,8 +1,10 @@
-{%- comment -%} Display name of a service, for link names like "Duong Vu on GitHub". {%- endcomment -%}
+{%- comment -%} Display name of a profile service, for link names like "Duong Vu on GitHub". {%- endcomment -%}
 {%- case include.icon -%}
 {%- when "github" -%}GitHub
 {%- when "scholar" -%}Google Scholar
 {%- when "x" -%}X
 {%- when "linkedin" -%}LinkedIn
+{%- when "orcid" -%}ORCID
+{%- when "website" -%}website
 {%- else -%}{{ include.icon }}
 {%- endcase -%}

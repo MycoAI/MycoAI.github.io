@@ -4,10 +4,15 @@
 //   node scripts/hero3d-check.mjs http://127.0.0.1:4000/ [path-to-chrome]
 //
 // It loads the page at 1440px and 360px wide, at 1440px with the GPU disabled (software
-// WebGL, as on machines without graphics acceleration) and at 1440px with reduced motion
-// (the model must still be shown, only without motion), and reports console
-// errors, failed requests and the size of the <canvas> inside #stage. Prints JSON; exits 1
-// when a run has no visible canvas with a size, or console errors or failed requests.
+// WebGL, as on machines without graphics acceleration), at 1440px in system dark mode and at
+// 1440px with reduced motion in dark mode (the model must still be shown, only without motion
+// and without rain), and reports console errors, failed requests, the size of the <canvas>
+// inside #stage and the draw calls and triangles of one frame (counted on the WebGL context,
+// as three.js renderer.info does). Rain (a WebGL LINES draw) must show only in dark mode,
+// follow the theme toggle at once, and stay off with reduced motion. The stage is scrolled
+// into view when the model has not loaded by itself, as three.js loads only near the viewport.
+// Prints JSON; exits 1 when a run has no visible canvas with a size, console errors, failed
+// requests or wrong rain.
 
 import { spawn } from "node:child_process";
 import { mkdtempSync, rmSync } from "node:fs";
@@ -81,6 +86,26 @@ function client(wsUrl) {
   });
 }
 
+/* counts draw calls per rendered frame; three.js clears once at the start of each render */
+const GL_HOOK = `(() => {
+  const S = window.__glStats = { cur: { calls: 0, triangles: 0, lines: 0 }, last: null, frames: 0 };
+  const add = (mode, count) => {
+    S.cur.calls++;
+    if (mode === 4) S.cur.triangles += count / 3;
+    else if (mode === 5 || mode === 6) S.cur.triangles += count - 2;
+    else if (mode === 1) S.cur.lines += count / 2;
+    else if (mode === 2 || mode === 3) S.cur.lines += count - 1;
+  };
+  for (const C of [window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
+    if (!C) continue;
+    const p = C.prototype, clear = p.clear, de = p.drawElements, da = p.drawArrays;
+    p.clear = function () { if (S.cur.calls) { S.last = S.cur; S.frames++; } S.cur = { calls: 0, triangles: 0, lines: 0 }; return clear.apply(this, arguments); };
+    p.drawElements = function (mode, count) { add(mode, count); return de.apply(this, arguments); };
+    p.drawArrays = function (mode, first, count) { add(mode, count); return da.apply(this, arguments); };
+  }
+})()`;
+const STATS = `(() => { const s = window.__glStats; return s && s.last ? { ...s.last, frames: s.frames } : null; })()`;
+
 const PROBE = `(() => {
   const stage = document.getElementById("stage");
   if (!stage) return { stage: null };
@@ -96,7 +121,7 @@ const PROBE = `(() => {
   };
 })()`;
 
-async function run(cdp, width, height, mobile, reduceMotion) {
+async function run(cdp, width, height, mobile, { reduceMotion, colorScheme, rainTest }) {
   const errors = [], failed = [];
   cdp.on((msg) => {
     if (msg.method === "Runtime.exceptionThrown") errors.push(msg.params.exceptionDetails.exception?.description || msg.params.exceptionDetails.text);
@@ -106,28 +131,63 @@ async function run(cdp, width, height, mobile, reduceMotion) {
     if (msg.method === "Network.loadingFailed" && !msg.params.canceled) failed.push(`${msg.params.errorText} ${msg.params.requestId}`);
   });
   await cdp.send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: mobile ? 2 : 1, mobile });
-  if (reduceMotion) {
-    await cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] });
-  }
+  await cdp.send("Emulation.setEmulatedMedia", { features: [
+    { name: "prefers-reduced-motion", value: reduceMotion ? "reduce" : "no-preference" },
+    { name: "prefers-color-scheme", value: colorScheme || "light" },
+  ] });
+  await cdp.send("Page.addScriptToEvaluateOnNewDocument", { source: GL_HOOK });
   await cdp.send("Page.navigate", { url });
-  let probe = null;
+  const evaluate = async (expression) => (await cdp.send("Runtime.evaluate", { expression, returnByValue: true })).result.result.value;
+  let probe = null, scrolled = false;
   for (let i = 0; i < 40; i++) {
     await sleep(500);
-    probe = (await cdp.send("Runtime.evaluate", { expression: PROBE, returnByValue: true })).result.result.value;
+    probe = await evaluate(PROBE);
     if (probe && probe.canvas && probe.is3d) break;
+    if (i === 11 && !scrolled) {
+      scrolled = true;
+      await evaluate(`document.getElementById("stage").scrollIntoView({ block: "center" })`);
+    }
   }
-  await sleep(500);
-  return { width, height, probe, errors: [...new Set(errors)], failed: [...new Set(failed)] };
+  const settle = async () => { await sleep(rainTest || reduceMotion ? 700 : 1200); return evaluate(STATS); };
+  const stats = await settle();
+  let rain = null;
+  if (stats) {
+    // the rain is the only LINES draw in the scene
+    const steps = [{ theme: null, stats }];
+    if (rainTest) {
+      for (const theme of ["dark", "light"]) {
+        await evaluate(`document.documentElement.setAttribute("data-theme", "${theme}")`);
+        steps.push({ theme, stats: await settle() });
+      }
+    } else if (reduceMotion) {
+      // switch to dark and make the scene redraw (zoom button): still no rain
+      await evaluate(`document.documentElement.setAttribute("data-theme", "dark")`);
+      await evaluate(`document.getElementById("zin").click()`);
+      steps.push({ theme: "dark", stats: await settle() });
+    }
+    const expected = (theme) => !reduceMotion && (theme ? theme === "dark" : colorScheme === "dark");
+    rain = steps.map(({ theme, stats }) => ({
+      theme: theme ? `data-theme ${theme}` : `system ${colorScheme || "light"}`,
+      expected: expected(theme), shown: !!stats && stats.lines > 0, stats,
+    }));
+  }
+  return {
+    width, height, probe, scrolled, stats, rain, rainOk: !!rain && rain.every((r) => r.expected === r.shown),
+    errors: [...new Set(errors)], failed: [...new Set(failed)],
+  };
 }
 
-async function check(width, height, mobile, flags = [], reduceMotion = false) {
+async function check(width, height, mobile, flags = [], options = {}) {
   const browser = launch(flags);
   try {
     const cdp = await client(await endpoint(browser.port));
     for (const d of ["Runtime.enable", "Log.enable", "Network.enable", "Page.enable"]) await cdp.send(d);
-    const result = await run(cdp, width, height, mobile, reduceMotion);
+    const result = await run(cdp, width, height, mobile, options);
     cdp.close();
-    return { ...result, flags: reduceMotion ? [...flags, "prefers-reduced-motion"] : flags };
+    const label = [...flags];
+    if (options.colorScheme === "dark") label.push("system dark");
+    if (options.reduceMotion) label.push("prefers-reduced-motion");
+    return { ...result, flags: label };
   } catch (e) {
     return { width, height, error: String(e) };
   } finally {
@@ -136,12 +196,13 @@ async function check(width, height, mobile, flags = [], reduceMotion = false) {
 }
 
 const results = [
-  await check(1440, 900, false),
+  await check(1440, 900, false, [], { rainTest: true }),
   await check(360, 740, true),
   await check(1440, 900, false, ["--disable-gpu"]),
-  await check(1440, 900, false, [], true),
+  await check(1440, 900, false, [], { colorScheme: "dark" }),
+  await check(1440, 900, false, [], { colorScheme: "dark", reduceMotion: true }),
 ];
 const ok = results.every((r) => r.probe && r.probe.canvas && r.probe.canvas.width > 0 && r.probe.canvas.height > 0 &&
-  r.probe.canvas.visible && r.errors.length === 0 && r.failed.length === 0);
+  r.probe.canvas.visible && r.rainOk && r.errors.length === 0 && r.failed.length === 0);
 console.log(JSON.stringify({ ok, results }, null, 2));
 process.exit(ok ? 0 : 1);

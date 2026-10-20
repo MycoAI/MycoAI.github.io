@@ -1,0 +1,12 @@
+{%- comment -%}
+  Round photo of include.member at include.size px, or a neutral circle with the initials
+  when the photo file does not exist. Decorative: the name is next to it.
+{%- endcomment -%}
+{%- assign photo_path = "/" | append: include.member.photo -%}
+{%- assign photo_file = site.static_files | where: "path", photo_path | first -%}
+{%- if include.member.photo and photo_file -%}
+<img class="avatar" src="{{ photo_path | relative_url }}" alt="" width="{{ include.size }}" height="{{ include.size }}" loading="lazy" decoding="async">
+{%- else -%}
+{%- assign words = include.member.name | split: " " -%}
+<span class="avatar avatar--initials" aria-hidden="true" data-added>{{ words.first | slice: 0 }}{% if words.size > 1 %}{{ words.last | slice: 0 }}{% endif %}</span>
+{%- endif -%}

@@ -53,6 +53,16 @@ APPROVED_RELABELS = {
   ["Github", "https://github.com/MycoAI"] => "MycoAI on GitHub",
 }.freeze
 
+# Team photos replaced on request by optimised 400x400 copies in photos/team/ (the
+# originals stay at their old addresses): legacy image => new image.
+APPROVED_IMAGE_SWAPS = {
+  "/photos/portrait_DuongVu.jpg" => "/photos/team/duong-vu.jpg",
+  "https://github.com/user-attachments/assets/5624f867-e647-4c67-9b77-3dded1570959" => "/photos/team/cunliang-geng.jpg",
+  "https://github.com/user-attachments/assets/32d37941-3bf2-46ef-9ef1-86cc7807542a" => "/photos/team/luuk-romeijn.jpg",
+  "https://github.com/user-attachments/assets/bfb5cc53-36a9-4d21-ad64-37225e267fff" => "/photos/team/huy-truong.jpg",
+  "https://github.com/user-attachments/assets/843ad8d7-fee9-439c-a37f-df177b43b2dc" => "/photos/team/ruby-van-der-holst.jpg",
+}.freeze
+
 BLOCK_TAGS = %w[
   address article aside blockquote br caption dd details dialog div dl dt
   fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 header hr li main
@@ -288,6 +298,8 @@ pages = legacy_files.select { |f| page?(f) && current_files.include?(f) }
 added_report = []
 puts "\n== Approved header/footer relabels"
 APPROVED_RELABELS.each { |(old, href), new| puts "  info  #{old.inspect} -> #{new.inspect} (#{href})" }
+puts "\n== Approved team photo replacements (/team.html)"
+APPROVED_IMAGE_SWAPS.each { |old, new| puts "  info  #{old.split('/').last} -> #{new}" }
 puts "\n== Content check (#{pages.size} pages)"
 FileUtils.rm_rf(DIFF_DIR)
 pages.each do |f|
@@ -308,7 +320,8 @@ pages.each do |f|
   end
 
   list_diff("#{url}: content links", old[:links], new[:links])
-  list_diff("#{url}: content images", old[:images], new[:images])
+  old_images = url == "/team.html" ? old[:images].map { |i| APPROVED_IMAGE_SWAPS.fetch(i, i) } : old[:images]
+  list_diff("#{url}: content images", old_images, new[:images])
 
   missing_ids = old[:ids] - new[:ids]
   fail!("#{url}: anchors missing: #{missing_ids.inspect}") unless missing_ids.empty?
@@ -336,19 +349,31 @@ File.write(ADDED_FILE, added_report.join("\n\n") + "\n")
 puts "\nAdded text per page: #{ADDED_FILE}"
 
 puts "\n== 3D hero (home page)"
-HERO_SCRIPTS = %w[assets/js/vendor/three.min.js assets/js/vendor/OrbitControls.js assets/js/hero3d.js].freeze
-HERO_SCRIPTS.each { |f| fail!("missing in the build: /#{f}") unless current_files.include?(f) }
+# hero3d.js is the only 3D script tag (home page only, defer); it loads the vendored three.js
+# and OrbitControls itself once the stage is near the viewport.
+HERO_JS = "assets/js/hero3d.js"
+HERO_VENDOR = %w[assets/js/vendor/three.min.js assets/js/vendor/OrbitControls.js].freeze
+([HERO_JS] + HERO_VENDOR).each { |f| fail!("missing in the build: /#{f}") unless current_files.include?(f) }
 home = Nokogiri::HTML5(File.read(File.join(CURRENT_DIR, "index.html"), encoding: "UTF-8"))
 srcs = home.css("script[src]").map { |s| [s["src"].sub(%r{\A/}, ""), s.key?("defer")] }
-order = HERO_SCRIPTS.map { |f| srcs.index { |src, _| src == f } }
-if order.any?(&:nil?)
-  fail!("home page does not load #{HERO_SCRIPTS.reject.with_index { |_, i| order[i] }.join(', ')}")
-elsif order != order.sort
-  fail!("home page loads the 3D scripts in the wrong order (needs three -> OrbitControls -> hero3d)")
-elsif order.any? { |i| !srcs[i][1] }
-  fail!("home page loads the 3D scripts without defer")
+hero_tag = srcs.find { |src, _| src == HERO_JS }
+if hero_tag.nil?
+  fail!("home page does not load /#{HERO_JS}")
+elsif !hero_tag[1]
+  fail!("home page loads /#{HERO_JS} without defer")
+end
+eager = srcs.map(&:first) & HERO_VENDOR
+fail!("home page loads #{eager.join(', ')} up front; they must be loaded lazily by hero3d.js") unless eager.empty?
+if current_files.include?(HERO_JS)
+  hero_src = File.read(File.join(CURRENT_DIR, HERO_JS), encoding: "UTF-8")
+  HERO_VENDOR.each do |f|
+    fail!("/#{HERO_JS} does not load #{File.basename(f)}") unless hero_src.include?("vendor/#{File.basename(f)}")
+  end
 end
 fail!("home page has no #stage") unless home.at_css("#stage")
+other = current_files.grep(/\.html\z/).reject { |f| f == "index.html" || f.start_with?("assets/") }
+  .select { |f| File.read(File.join(CURRENT_DIR, f), encoding: "UTF-8").include?("hero3d.js") }
+fail!("3D scripts loaded outside the home page: #{other.first(5).join(', ')}") unless other.empty?
 
 node_ok = system("node", "--version", out: File::NULL, err: File::NULL)
 if !node_ok
@@ -373,10 +398,22 @@ else
       end
       c = r.dig("probe", "canvas")
       if c && c["visible"] && c["width"].to_i > 0 && c["height"].to_i > 0
-        puts "  ok    #{label}: canvas #{c['width']}x#{c['height']} in #stage"
+        s = r["stats"] || {}
+        puts "  ok    #{label}: canvas #{c['width']}x#{c['height']} in #stage" \
+             "#{r['scrolled'] ? ' (after scrolling to it)' : ''}; one frame: #{s['calls']} draw calls, " \
+             "#{s['triangles'].to_i} triangles, #{s['lines'].to_i} lines"
       else
         fail!("3D hero at #{label}: no visible canvas in #stage (#{r['probe'].inspect})")
       end
+      (r["rain"] || []).each do |step|
+        line = "rain with #{step['theme']}: #{step['shown'] ? 'on' : 'off'}"
+        if step["expected"] == step["shown"]
+          puts "  ok    #{label}: #{line}"
+        else
+          fail!("3D hero at #{label}: #{line}, expected #{step['expected'] ? 'on' : 'off'}")
+        end
+      end
+      fail!("3D hero at #{label}: rain could not be checked") if c && r["rain"].nil?
       r["errors"].each { |e| fail!("3D hero at #{label}: console error: #{e}") }
       r["failed"].each { |e| fail!("3D hero at #{label}: failed request: #{e}") }
     end

@@ -1,0 +1,31 @@
+{%- comment -%}
+  Profile links of include.member as icon buttons named "<name> on <service>".
+  With include.legacy, each link also keeps the original page text ("Github: https://...")
+  as screen-reader text, as on the original Team members page.
+{%- endcomment -%}
+{%- assign services = "github,scholar,x,linkedin,orcid,website" | split: "," -%}
+{%- if include.member.links %}
+<ul class="plain links">
+{%- for service in services -%}
+  {%- assign url = include.member.links[service] -%}
+  {%- unless url -%}{%- continue -%}{%- endunless -%}
+  {%- capture label %}{% include service-name.html icon=service %}{% endcapture -%}
+  {%- assign icon = service -%}{%- if service == "website" -%}{%- assign icon = "globe" -%}{%- endif %}
+<li><a class="icon-btn" href="{{ url }}" aria-label="{{ include.member.name }} on {{ label }}" title="{{ include.member.name }} on {{ label }}">{% include icon.html name=icon %}
+  {%- if include.legacy -%}
+    {%- case service -%}
+      {%- when "github" -%}{%- assign old_label = "Github" -%}
+      {%- when "scholar" -%}{%- assign old_label = "Google scholar" -%}
+      {%- when "x" -%}{%- assign old_label = "Twitter" -%}
+      {%- when "linkedin" -%}{%- assign old_label = "linkedin" -%}
+      {%- else -%}{%- assign old_label = label -%}
+    {%- endcase -%}
+    {%- assign last_char = url | slice: -1 -%}
+    {%- assign shown = url -%}
+    {%- if last_char == "/" -%}{%- assign n = url.size | minus: 1 -%}{%- assign shown = url | slice: 0, n -%}{%- endif -%}
+    <span class="sr-only"><strong>{{ old_label }}: </strong>{{ shown }}</span>
+  {%- endif -%}
+</a></li>
+{%- endfor %}
+</ul>
+{%- endif -%}

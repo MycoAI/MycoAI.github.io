@@ -25,7 +25,7 @@
 {%- endif -%}
 
 <section class="hero">
-  <div class="stage" id="stage">
+  <div class="stage" id="stage" data-label="{{ home.stage_label }}">
     <p class="fallback">{% include images.html html=logo %}</p>
   </div>
   <p class="caption" id="hero-caption" hidden data-added>{{ home.caption }}</p>
@@ -118,18 +118,14 @@
       <h2 id="team-title">{{ home.team_title }}</h2>
       <a class="more" href="{{ "/team.html" | relative_url }}">{{ home.meet_team }}</a>
     </div>
+    {%- include team-sorted.html status="current" %}
     <ul class="plain team-row">
-    {%- for member in site.data.team %}
+    {%- for member in sorted_team %}
       <li>
-        <img src="{{ member.photo }}" alt="" width="88" height="88" loading="lazy" decoding="async">
+        {% include team-photo.html member=member size=88 %}
         <p class="name">{{ member.name }}</p>
         <p class="role">{{ member.role }}</p>
-        <ul class="plain links">
-        {%- for link in member.links -%}
-          {%- capture service %}{% include service-name.html icon=link.icon %}{% endcapture %}
-          <li><a class="icon-btn" href="{{ link.url }}" aria-label="{{ member.name }} on {{ service }}" title="{{ member.name }} on {{ service }}">{% include icon.html name=link.icon %}</a></li>
-        {%- endfor %}
-        </ul>
+        {% include team-links.html member=member %}
       </li>
     {%- endfor %}
     </ul>

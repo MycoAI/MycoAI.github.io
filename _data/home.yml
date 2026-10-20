@@ -49,8 +49,10 @@ highlights:
 all_posts: All {count} posts →
 news_count: 3
 
-# Caption under the 3D model of the logo in the hero.
-caption: 3D model of the MycoAI logo · drag to rotate · Ctrl + scroll or pinch to zoom
+# Caption under the 3D model of the mascot in the hero.
+caption: 3D model of the MycoAI mascot · drag to rotate · Ctrl + scroll or pinch to zoom
+# Name of the 3D model for screen readers (set on the stage once the model is running).
+stage_label: Interactive 3D model of the MycoAI mascot standing in the rain on a floating island
 
 # Team preview (names, roles, photos and profile links come from _data/team.yml).
 team_title: Team

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Sets `sorted_team`: the people in _data/team.yml sorted by `order`, then by name.
+  With include.status ("current" or "alumni") only those people are kept.
+{%- endcomment -%}
+{%- assign team_keys = "" | split: "" -%}
+{%- for m in site.data.team -%}
+  {%- if include.status and m.status != include.status -%}{%- continue -%}{%- endif -%}
+  {%- assign o = m.order | default: 999 | plus: 10000 -%}
+  {%- capture k %}{{ o }}|{{ m.name | downcase }}|{{ forloop.index0 }}{% endcapture -%}
+  {%- assign team_keys = team_keys | push: k -%}
+{%- endfor -%}
+{%- assign team_keys = team_keys | sort -%}
+{%- assign sorted_team = "" | split: "" -%}
+{%- for k in team_keys -%}
+  {%- assign i = k | split: "|" | last | plus: 0 -%}
+  {%- assign sorted_team = sorted_team | push: site.data.team[i] -%}
+{%- endfor -%}
