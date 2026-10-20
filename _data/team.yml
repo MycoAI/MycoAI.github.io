@@ -53,12 +53,14 @@
 - name: Luka Ivkovic
   status: current  
   order: 3
-  role: Data collection and integration, Westerdijk Fungal Biodiversity Institute
+  role: Fungal Data Scientist & Community Coordinator, Westerdijk Fungal Biodiversity Institute
   photo: photos/team/luka-ivkovic.png
   bio: |-
-    
+    Luka Ivkovic is a Fungal Data Scientist & Community Coordinator at the Westerdijk Fungal Biodiversity Institute, working across MycoBase and FUNGI-NL. He contributes to the development of open, FAIR and reproducible fungal research infrastructure by integrating diverse fungal data, developing and maintaining data and bioinformatics workflows, and supporting metadata, standards, interoperability, data pipelines and APIs. His work connects technical infrastructure with the needs of researchers and the wider fungal community through user engagement, documentation, training and knowledge sharing. The overall goal is to make fungal data, software and research resources more accessible, interoperable, reusable and useful across the community.
   links:
-    github:
+    github: https://github.com/LukaIvkovicc
+    linkedin: https://www.linkedin.com/in/luka-ivkovic-1a1118290
+    Email: mailto:l.ivkovic@wi.knaw.nl
 
 - name: Biao Wang
   status: current
